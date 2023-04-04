@@ -1,1 +1,0 @@
-create view vw_customer as select * from customer
