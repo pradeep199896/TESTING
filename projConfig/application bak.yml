@@ -1,0 +1,150 @@
+spring:
+  datasource:
+    #    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    username: root
+    #    url: jdbc:mysql://localhost:3306/dtstest
+    #    url: jdbc:mysql://10.144.23.240:3306/dtstest
+    #    password: rootroot
+    #    url: jdbc:postgresql://localhost:5432/postgres
+    #    driver-class-name: org.postgresql.Driver
+    #    username: postgres
+    #    password: postgrespw
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@//192.168.3.178:1524/ORCLCDB
+    username: c##test
+    password: test
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 100
+        order_updates: true
+        generate_statistics: false
+        dialect: org.hibernate.dialect.Oracle10gDialect
+    database: oracle
+    #    database: postgresql
+    #    database: mysql
+    #  cloud:
+    #    function:
+    #      definition: dataCollectingParellel; #lastValueQueueHandler
+  cloud:
+    stream:
+      poller:
+        fixed-delay: 2000
+      bindings:
+        input-0:
+          destination: zy-passQ
+          binder: solace
+          consumer:
+            concurrency: 1
+        output-0:
+          destination: Pulse/pass
+          binder: solace
+          content-type: application/x-java-serialized-object
+#        input-1:
+#          destination: zy-odsQ
+#          binder: solace
+#          consumer:
+#            concurrency: 1
+#        output-1:
+#          destination: Pulse/ods
+#          binder: solace
+#          content-type: application/x-java-serialized-object
+#        trigger-out-10:
+#          destination: batchTopic
+#          binder: solace
+#          content-type: application/x-java-serialized-object
+#      solace:
+#        bindings:
+#          lastValueQueueHandler-in-0:
+#            consumer:
+#              provisionSubscriptionsToDurableQueue: false
+#              provisionDurableQueue: false
+#              queueNamePrefix: ""
+#              useFamiliarityInQueueName: false
+#              useDestinationEncodingInQueueName: false
+#              useGroupNameInQueueName: false
+#      binders:
+#        local-solace:
+#          type: solace
+#          environment:
+#            solace:
+#              java:
+#                #                host: tcp://119.3.224.170:55555
+#                host: tcp://192.144.217.87:55555
+#                msgVpn: default
+#                clientUsername: admin
+#                clientPassword: admin
+#                connectRetries: -1
+#                reconnectRetries: -1
+#                apiProperties:
+#                  pub_ack_window_size: 50
+solace:
+  connector:
+    workflows: # Workflow configuration
+      0:
+        enabled: true  # If true, the workflow is enabled.
+        acknowledgment:
+          publish-async: true
+        transformation:
+          mappingFile: "D:/git/data2solace/solace-db-pull-connector/projConfig/solace-connector-mapper.yml"
+          mode: customentitytoxml
+#      1:
+#        enabled: false  # If true, the workflow is enabled.
+#        acknowledgment:
+#          publish-async: true
+    management:
+      leader-election:
+        mode: active_standby  # The connector’s leader election mode. (values: standalone, active_active, active_standby)
+        fail-over:
+          max-attempts: 3  # The maximum number of attempts to perform a fail-over.
+          back-off-initial-interval: 1000  # The initial interval (milliseconds) to back-off when retrying a fail-over.
+          back-off-max-interval: 10000  # The maximum interval (milliseconds) to back-off when retrying a fail-over.
+          back-off-multiplier: 2.0  # The multiplier to apply to the back-off interval between each retry of a fail-over.
+      queue: management-queue-push  # The management queue name.
+      session: # The management session. This has the same interface as that used by `solace.java.*`. For more info: https://github.com/SolaceProducts/solace-spring-boot/tree/master/solace-spring-boot-starters/solace-java-spring-boot-starter#updating-your-application-properties
+        host: tcp://192.144.217.87:55555
+        msgVpn: default
+        client-username: admin
+        client-password: admin
+  java:
+    host: tcp://192.144.217.87:55555
+    msgVpn: default
+    clientUsername: admin
+    clientPassword: admin
+    connectRetries: -1
+    reconnectRetries: -1
+    apiProperties:
+      pub_ack_window_size: 50
+      pub_ack_time: 200
+logging:
+  level:
+    root: INFO
+    com.solacesystems.jcsmp: ERROR
+    org.springframework: ERROR
+    com.solace.spring: ERROR
+    com.solace.connector.core: ERROR
+    org.springframework.context.support.DefaultLifecycleProcessor: ERROR
+    org.hibernate: ERROR
+    org.apache.catalina: ERROR
+server:
+  port : 8085
+
+pull:
+  sendBatchSize: 1
+  queryMax: 100
+  triggerInterval: 2000
+  retryInterval: 10 # seconds
+  enableRetry: true
+  retryCount: 3
+  enableLVQ: true
+  LVQTopicName: Lvq
+  enableBufferedJpaBatch: true # only available when sendBatchSize = 1
+  bufferWaitSeconds: 5
+  enableTrackingId: true
+  enableDatabaseTimestamp: true
+  enableConnectorTimestamp: true
+  enableBenchmarkInfo: true
