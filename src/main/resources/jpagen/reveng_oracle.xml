@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC
+        "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <type-mapping>
+    <!--这里配置需要映射的类型-->
+    <sql-type jdbc-type="BINARY_FLOAT" hibernate-type="java.lang.Float"/>
+    <sql-type jdbc-type="BINARY_DOUBLE" hibernate-type="java.lang.Double"/>
+    <sql-type jdbc-type="CLOB" hibernate-type="java.lang.String"/>
+  </type-mapping>
+</hibernate-reverse-engineering>
