@@ -1,0 +1,73 @@
+solace-connector-mapper:
+    mapper-metadata:
+        source-schema-type: json
+        target-schema-type: sourcetable
+        encrypted: null
+        source-schema-name: Customer
+        target-schema-name: sourcetable
+    payload-mapper:
+        mapper-customerId:
+            source-xpath: Customer/customerId
+            source-datatype: NUMBER
+            target-xpath: CUSTOMER/CUSTOMER_ID
+            target-datatype: NUMBER
+        mapper-adbTrackingid:
+            source-xpath: Customer/adbTrackingid
+            source-datatype: VARCHAR2
+            target-xpath: CUSTOMER/ADB_TRACKINGID
+            target-datatype: VARCHAR2
+        mapper-DStatus:
+            source-xpath: Customer/DStatus
+            source-datatype: VARCHAR2
+            target-xpath: CUSTOMER/D_STATUS
+            target-datatype: VARCHAR2
+        mapper-sequenceId:
+            source-xpath: Customer/sequenceId
+            source-datatype: VARCHAR2
+            target-xpath: CUSTOMER/SEQUENCE_ID
+            target-datatype: VARCHAR2
+        mapper-city:
+            source-xpath: Customer/city
+            source-datatype: VARCHAR2
+            target-xpath: CUSTOMER/CITY
+            target-datatype: VARCHAR2
+        mapper-firstName:
+            source-xpath: Customer/firstName
+            source-datatype: VARCHAR2
+            target-xpath: CUSTOMER/FIRST_NAME
+            target-datatype: VARCHAR2
+        mapper-lastName:
+            source-xpath: Customer/lastName
+            source-datatype: VARCHAR2
+            target-xpath: CUSTOMER/LAST_NAME
+            target-datatype: VARCHAR2
+        mapper-state:
+            source-xpath: Customer/state
+            source-datatype: VARCHAR2
+            target-xpath: CUSTOMER/STATE
+            target-datatype: VARCHAR2
+        mapper-zip:
+            source-xpath: Customer/zip
+            source-datatype: VARCHAR2
+            target-xpath: CUSTOMER/ZIP
+            target-datatype: VARCHAR2
+        mapper-dbtime:
+            source-xpath: Customer/dbtime
+            source-datatype: TIMESTAMP(6)
+            target-xpath: CUSTOMER/DBTIME
+            target-datatype: TIMESTAMP(6)
+        mapper-blobc:
+            source-xpath: Customer/blobc
+            source-datatype: BLOB
+            target-xpath: CUSTOMER/BLOBC
+            target-datatype: BLOB
+        mapper-clobc:
+            source-xpath: Customer/clobc
+            source-datatype: CLOB
+            target-xpath: CUSTOMER/CLOBC
+            target-datatype: CLOB
+        mapper-systemtime:
+            source-xpath: Customer/systemtime
+            source-datatype: TIMESTAMP(6)
+            target-xpath: CUSTOMER/SYSTEMTIME
+            target-datatype: TIMESTAMP(6)
