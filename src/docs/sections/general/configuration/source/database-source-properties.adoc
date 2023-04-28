@@ -1,0 +1,23 @@
+include::../../../snippets/attributes/common.adoc
+
+= Database Source Configuration Options
+
+[cols="2m,1m,1m,1m,2", options="header"]
+|===
+| Config Option
+| Type
+| Valid Values
+| Default Value
+| Description
+
+| solace-persistence.datasource.driver-class-name
+| string
+| oracle.jdbc.OracleDriver
+|
+| This property have to be filled with valid jdbc driver class
+
+| solace-persistence.datasource.driver-class-name
+| string
+| jdbc:oracle:thin:@//<host>:<port>/<db name>
+|
+| Fill in the valid connection url of the database
