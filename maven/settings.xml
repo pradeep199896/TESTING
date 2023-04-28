@@ -21,6 +21,16 @@
 					</snapshots>
 				</repository>
 				<repository>
+					<id>github-solacetechcoe-solace-transformation-engine</id>
+					<url>https://maven.pkg.github.com/SolacePrivateTechCOE/solace-transformation-engine</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+				<repository>
 					<id>github-solacedev-pubsubplus-connector-framework</id>
 					<url>https://maven.pkg.github.com/solacedev/pubsubplus-connector-framework</url>
 					<releases>
@@ -63,6 +73,16 @@
 					<enabled>true</enabled>
 				</snapshots>
 			</pluginRepository>
+			<pluginRepository>
+				<id>github-solacetechcoe-solace-transformation-engine</id>
+				<url>https://maven.pkg.github.com/SolacePrivateTechCOE/solace-transformation-engine</url>
+				<releases>
+					<enabled>false</enabled>
+				</releases>
+				<snapshots>
+					<enabled>true</enabled>
+				</snapshots>
+			</pluginRepository>
 		</profile>
 	</profiles>
 
@@ -79,6 +99,11 @@
 		</server>
 		<server>
 			<id>github-solacetechcoe-spring-cloud-stream-binder-db</id>
+			<username>${env.SOLACEDEV_GITHUB_USERNAME}</username>
+			<password>${env.SOLACEDEV_GITHUB_TOKEN}</password>
+		</server>
+		<server>
+			<id>github-solacetechcoe-solace-transformation-engine</id>
 			<username>${env.SOLACEDEV_GITHUB_USERNAME}</username>
 			<password>${env.SOLACEDEV_GITHUB_TOKEN}</password>
 		</server>
