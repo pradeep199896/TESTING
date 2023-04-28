@@ -11,6 +11,16 @@
 			<id>github</id>
 			<repositories>
 				<repository>
+					<id>github-solacetechcoe-spring-cloud-stream-binder-db</id>
+					<url>https://maven.pkg.github.com/SolaceTechCOE/spring-cloud-stream-binder-db</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+				<repository>
 					<id>github-solacedev-pubsubplus-connector-framework</id>
 					<url>https://maven.pkg.github.com/solacedev/pubsubplus-connector-framework</url>
 					<releases>
@@ -43,6 +53,16 @@
 					</snapshots>
 				</pluginRepository>
 			</pluginRepositories>
+			<pluginRepository>
+				<id>github-solacetechcoe-spring-cloud-stream-binder-db</id>
+				<url>https://maven.pkg.github.com/SolaceTechCOE/spring-cloud-stream-binder-db</url>
+				<releases>
+					<enabled>false</enabled>
+				</releases>
+				<snapshots>
+					<enabled>true</enabled>
+				</snapshots>
+			</pluginRepository>
 		</profile>
 	</profiles>
 
@@ -54,6 +74,11 @@
 		</server>
 		<server>
 			<id>github-solacedev-solace-spring-cloud</id>
+			<username>${env.SOLACEDEV_GITHUB_USERNAME}</username>
+			<password>${env.SOLACEDEV_GITHUB_TOKEN}</password>
+		</server>
+		<server>
+			<id>github-solacetechcoe-spring-cloud-stream-binder-db</id>
 			<username>${env.SOLACEDEV_GITHUB_USERNAME}</username>
 			<password>${env.SOLACEDEV_GITHUB_TOKEN}</password>
 		</server>
