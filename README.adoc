@@ -1,0 +1,20 @@
+= pubsubplus-connector-database
+:doctype: book
+:toc: preamble
+:toclevels: 3
+:icons: font
+
+// Github-Specific Settings
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+A self-contained connector built on the Solace Connector Framework.
+
+See the https://github.com/SolaceDev/solace-connector-framework[Solace Connector Framework documentation] for info on how to build the connector.
+
+To get the docs for this particular connector, build the connector and see `target/generated-docs`.
