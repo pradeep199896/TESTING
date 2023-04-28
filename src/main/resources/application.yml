@@ -5,6 +5,9 @@
 
 spring:
   cloud:
+    config:
+      import-check:
+        enabled: false
     function:
       # [INTERNAL] Message handler function definitions
       definition: "\
