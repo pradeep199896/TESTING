@@ -111,6 +111,7 @@ include::{connector-framework-docs-dir}/sections/general/configuration/options/w
 include::{docdir}/../sections/general/configuration/sink/database-sink-properties.adoc[leveloffset=+2]
 include::{docdir}/../sections/general/configuration/source/database-source-properties.adoc[leveloffset=+2]
 
+
 == License
 
 This project is licensed under the Apache License, Version 2.0. - See the `LICENSE` file for details.
