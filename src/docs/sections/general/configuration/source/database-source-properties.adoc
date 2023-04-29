@@ -2,6 +2,8 @@ include::../../../snippets/attributes/common.adoc
 
 = Database Source Configuration Options
 
+These configuration options are all prefixed by `solace-persistence.`:
+
 [cols="2m,1m,1m,1m,2", options="header"]
 |===
 | Config Option
@@ -10,17 +12,107 @@ include::../../../snippets/attributes/common.adoc
 | Default Value
 | Description
 
-| solace-persistence.datasource.driver-class-name
-| string
-| oracle.jdbc.OracleDriver
+| datasource
+| embedded config
+| see https://docs.spring.io/spring-boot/docs/current/reference/html/data.html#data.sql.datasource[Spring Datasource Configuration]
 |
-| This property have to be filled with valid jdbc driver class
+| The spring datasource configuration to read data
 
-| solace-persistence.datasource.driver-class-name
-| string
-| jdbc:oracle:thin:@//<host>:<port>/<db name>
+| jpa
+| embedded config
+| see https://docs.spring.io/spring-boot/docs/current/reference/html/data.html#data.sql.jpa-and-spring-data[Spring JPA Configuration]
 |
-| Fill in the valid connection url of the database
+| The spring jpa configuration
+
+| source.sendBatchSize
+| int
+| send in batch
+|
+| currently only support sending one by one
+
+| source.queryMax
+| int
+| query records a time
+| 1000
+| query from table for the records number a time
+
+| source.maxDbRetry
+| int
+| in case of DB issue
+| 3
+| it will do retry to the db
+
+| source.triggerInterval
+| long
+| long
+| 1000
+| interval of each db query, in millisecond
+
+| source.enableRetry
+| string
+| true or false
+| true
+| if true, will retry to do db query
+
+| source.retryInterval
+| int
+| int
+| 5
+| interval of db query on error occurred, in second
+
+| source.retryCount
+| int
+| int
+| 3
+| retry times to db query on error occurred, in second
+
+| source.enableBufferedJpaBatch
+| string
+| true or false
+| true
+| if true, connector will write back indicator values in batch mode
+  
+| source.bufferWaitSeconds
+| int
+| int
+| 5
+| max time to wait for the batch write, in second
+
+| source.enableTrackingId
+| string
+| true or false
+| true
+| if true, will include the tracking id in the message header.
+
+| source.enableDatabaseTimestamp
+| string
+| true or false
+| true
+| if true, will include the reading DB record time in the message header.
+
+| source.enableConnectorTimestamp
+| string
+| true or false
+| true
+| if true, will include the connector sending message time in the message header.
+
+| source.enableBenchmarkInfo
+| string
+| true or false
+| false
+| if true, print the performance statistics.
+
+|===
+
+= Database Source Configuration in connector.properties
+
+[cols="2m,1m,1m,1m,2", options="header"]
+|===
+| Config Option
+| Type
+| Valid Values
+| Default Value
+| Description
 
 | <table_name>:entity mapping
 | string
@@ -37,98 +129,98 @@ include::../../../snippets/attributes/common.adoc
 | table_name.TOPIC
 | string
 | topic name with multiple levels, using /
-| 
+|
 | data topic name, send the event of record to this topic
 
 | table_name.LVQ_TOPIC
 | string
 | topic name with multiple levels, using /
-| 
+|
 | lvq topic name, send checkpoint data to this topic
 
 | table_name.DB_TABLE
 | string
 | parent table
-| 
+|
 | parent table name
 
 | table_name.DB_PARENT_KEY
 | string
 | parent table key
-| 
+|
 | key column property in the parent table, has relationship with child table key.
 
 | table_name.DB_PARENT_COLLECTION
 | string
 | map object
-| 
+|
 | map object in the parent entity
 
 | table_name.DB_CHILD_TABLE
 | string
 | child table name
-| 
+|
 | child table name
 
 | table_name.DB_CHILD_KEY
 | string
 | child table key
-| 
+|
 | key column property in the child table, has relationship with parent table key
 
 | table_name.DB_READ_INDICATOR_COLUMN
 | string
 | source table indicator column
-| 
+|
 | source table read indicator column
 
 | table_name.DB_TRACKING_ID
 | string
 | tracking id value
-| 
+|
 | specify the tracking ID column property
 
 | table_name.DB_READ_TIME
 | string
 | connector will update this column when reading this record
-| 
+|
 | specify the read time column property, update this column with the reading record time by connector
 
 | table_name.DB_READ_INDICATOR_COLUMN_UPDATE_VALUE_INPROGRESS
 | string
 | indicator column will change to this value
-| 
+|
 | after records read by connector and in the process
 
 | table_name.DB_READ_INDICATOR_COLUMN_UPDATE_VALUE_PROCESSED
 | string
 | indicator column will change to this value
-| 
+|
 | after records read by connector, sent to solace as event and got the ack.
 
 | table_name.DB_READ_INDICATOR_COLUMN_DEFAULT_VALUE
 | string
 | default value
-| 
+|
 | initial value and ready to read by connector.
 
 | table_name.DB_READ_INDICATOR_COLUMN_FAILED_VALUE
 | string
 | set to a failed value
-| 
+|
 | error or failed during processing.
 
 | table_name.DB_READ_RECORD_SEQUENTIAL_INDICATOR
 | string
 | table column property
-| 
+|
 | table records reading sequencial column property
 
 | table_name.DB_READ_RECORD_SEQUENTIAL_ORDER
 | string
 | asc or desc
 | asc
-| read table records 
+| read table records
 
 | table_name.DB_READ_INDICATOR_BRIDGE_FAILED_VALUE
 | boolean
@@ -142,82 +234,4 @@ include::../../../snippets/attributes/common.adoc
 |
 | it will have custom_header in the message property, its value is from the record of the column property specified
 
-| sendBatchSize
-| int
-| send in batch
-|
-| currently only support sending one by one
-
-| queryMax
-| int
-| query records a time
-|
-| query from table for the records number a time
-
-| maxDbRetry
-| int
-| in case of DB issue
-|
-| it will do retry to the db
-
-| triggerInterval
-| int
-| 
-|
-| 
-
-| retryInterval
-| int
-| 
-|
-| 
-
-| enableRetry
-| boolean
-| true or false
-| fales
-| if true, will retry to send to solace
-
-| retryCount
-| int
-| 2,3...
-|
-| retry times to send message to solace
-
-| enableBufferedJpaBatch
-| boolean
-| true or false
-|
-| 
-  
-| bufferWaitSeconds
-| int
-| 1,2,3...
-|
-| 
-
-| enableTrackingId
-| boolean
-| true or false
-|
-| if true, will include the tracking id in the message header.
-
-| enableDatabaseTimestamp
-| boolean
-| true or false
-|
-| if true, will include the reading DB record time in the message header.
-
-| enableConnectorTimestamp
-| boolean
-| true or false
-|
-| if true, will include the connector sending message time in the message header.
-
-| enableBenchmarkInfo
-| boolean
-| true or false
-|
-| if true, print the performance statistics.
-
-
+|===

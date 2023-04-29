@@ -1,8 +1,8 @@
 include::../../../snippets/attributes/common.adoc
 
-= File Sink Configuration Options
+= Database Sink Configuration Options
 
-These configuration options are all prefixed by `file.assembler.`:
+These configuration options are all prefixed by `solace-persistence.`:
 
 [cols="2m,1m,1m,1m,2", options="header"]
 |===
@@ -12,27 +12,82 @@ These configuration options are all prefixed by `file.assembler.`:
 | Default Value
 | Description
 
-| solace-persistence.datasource.driver-class-name
-| string
-| oracle.jdbc.OracleDriver
+| datasource
+| embedded config
+| see https://docs.spring.io/spring-boot/docs/current/reference/html/data.html#data.sql.datasource[Spring Datasource Configuration]
 |
-| This property have to be filled with valid jdbc driver class
+| The spring datasource configuration to write data
 
-| solace-persistence.datasource.driver-class-name
-| string
-| jdbc:oracle:thin:@//<host>:<port>/<db name>
+| jpa
+| embedded config
+| see https://docs.spring.io/spring-boot/docs/current/reference/html/data.html#data.sql.jpa-and-spring-data[Spring JPA Configuration]
 |
-| Fill in the valid connection url of the database
+| The spring jpa configuration
 
-| table:enity mapping
+| sink.jpaBatchMode
 | string
-| <table_name>:entity_path
+| true or false
+| true
+| true to enable batch insert to the DB table
+
+| sink.jpaBatchSize
+| int
+| 2,3,4...
+| 25
+| Set the batch size to DB when jpaBatchMode is true
+
+| sink.jpaMaxRetry
+| string
+| true or false
+| true
+| Retry times to insert to DB table times.
+
+| sink.jpaRetryWaitMilliseconds
+| int
+| 3000
+| empty
+| Interval between retry, milliseconds
+
+| sink.redirectOnFailEnable
+| string
+| true or false
+| true
+| when true, if the topic name in the queue is not mapped to any table, it will redirect this message to another new topic with a redirectPrefix prepend to the original topic name
+
+| sink.redirectPrefix
+| string
+| <string>/
+| prefix/, could be any string + /
+| prepand to the original topic name
+
+| sink.payloadFormat
+| string
+| xml or json
+| xml
+| payload format sent to Solace queue
+
+
+|===
+
+= Database Sink Configuration in connector.properties
+
+[cols="2m,1m,1m,1m,2", options="header"]
+|===
+| Config Option
+| Type
+| Valid Values
+| Default Value
+| Description
+
+| table_name:enity mapping
+| string
+| <table_name>:<entity class reference>
 | empty
 | ex.customer:com.solace.connectors.database.sink.entity.Customer
 
-| topic name:table mapping
+| topic:table_key mapping
 | string
-| topic_name:<table_name>
+| <topic>:<table_name>
 | empty
 | set topic name to table name mapping, the event of contain this topic name will be insert into the table. wildcard >,* can be used for filter the topic.
 
@@ -40,60 +95,24 @@ These configuration options are all prefixed by `file.assembler.`:
 | string
 | timestamp format
 | yyyy/dd/MM.HH:mm:ss
-| Set the DB Connector timestamp format.
+| Set the timestamp format pattern
+
+| DB_CONNECTOR_BLOB_ENCODING
+| string
+| BASE64 or HEX
+| BASE64
+| Blob Encoding format in the message payload
 
 | DB_MSG_HEADER_TIMESTAMP_FORMAT
 | string
 | timestamp format
 | yyyy/dd/MM.HH:mm:ss
-| Set the message header timestamp format.
+| Set the message header timestamp format pattern
 
 | MESSAGE_HEADER_<header property>=<table name>.column property
 | string
 | <table_name>.column property name
 | empty
 | For example: MESSAGE_HEADER_TRACK_ID=passenger.day, if message header has a property "TRACK_ID", its value will inserted to table "passenger", column "day"
-
-| jpaBatchMode
-| boolean
-| true or false
-| false
-| true to enable batch insert to the DB table
-
-| jpaBatchSize
-| int
-| 2,3,4...
-| 1
-| Set the batch size to DB when jpaBatchMode is true
-
-| jpaMaxRetry
-| boolean
-| true or false
-| false
-| Retry times to insert to DB table times.
-
-| jpaRetryWaitMilliseconds
-| Milliseconds
-| 3000
-| empty
-| Interval between retry
-
-| redirectOnFailEnable
-| boolean
-| true or false
-| false
-| when true, if the topic name in the queue is not mapped to any table, it will redirect this message to another new topic with a redirectPrefix prepend to the original topic name
-
-| redirectPrefix
-| string
-| string+/
-| prefix/, could be any string + /
-| prepand to the original topic name
-
-| payloadFormat
-| string
-| xml or json
-| xml
-| payload format sent to Solace queue
 
 |===
