@@ -21,3 +21,21 @@ include::../../../snippets/attributes/common.adoc
 | jdbc:oracle:thin:@//<host>:<port>/<db name>
 |
 | Fill in the valid connection url of the database
+
+| <table_name>:entity mapping
+| string
+| <table_name>:entity mapping
+|
+| Fill in table name mapped to a entity
+
+| table name.BINDING
+| string
+| output-0
+| output-0
+| use this default value
+
+| source_passenger.TOPIC
+| string
+| topic name with multiple levels, using /
+| 
+| data topic name, send the event of record to this topic
