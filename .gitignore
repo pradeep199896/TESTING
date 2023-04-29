@@ -27,3 +27,7 @@ replay_pid*
 target
 *.iml
 
+
+.DS_Store
+/log/
+/logs/
