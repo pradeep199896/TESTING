@@ -142,3 +142,82 @@ include::../../../snippets/attributes/common.adoc
 |
 | it will have custom_header in the message property, its value is from the record of the column property specified
 
+| sendBatchSize
+| int
+| send in batch
+|
+| currently only support sending one by one
+
+| queryMax
+| int
+| query records a time
+|
+| query from table for the records number a time
+
+| maxDbRetry
+| int
+| in case of DB issue
+|
+| it will do retry to the db
+
+| triggerInterval
+| int
+| 
+|
+| 
+
+| retryInterval
+| int
+| 
+|
+| 
+
+| enableRetry
+| boolean
+| true or false
+| fales
+| if true, will retry to send to solace
+
+| retryCount
+| int
+| 2,3...
+|
+| retry times to send message to solace
+
+| enableBufferedJpaBatch
+| boolean
+| true or false
+|
+| 
+  
+| bufferWaitSeconds
+| int
+| 1,2,3...
+|
+| 
+
+| enableTrackingId
+| boolean
+| true or false
+|
+| if true, will include the tracking id in the message header.
+
+| enableDatabaseTimestamp
+| boolean
+| true or false
+|
+| if true, will include the reading DB record time in the message header.
+
+| enableConnectorTimestamp
+| boolean
+| true or false
+|
+| if true, will include the connector sending message time in the message header.
+
+| enableBenchmarkInfo
+| boolean
+| true or false
+|
+| if true, print the performance statistics.
+
+
