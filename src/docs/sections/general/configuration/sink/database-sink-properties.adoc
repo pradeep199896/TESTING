@@ -1,0 +1,63 @@
+include::../../../snippets/attributes/common.adoc
+
+= File Sink Configuration Options
+
+These configuration options are all prefixed by `file.assembler.`:
+
+[cols="2m,1m,1m,1m,2", options="header"]
+|===
+| Config Option
+| Type
+| Valid Values
+| Default Value
+| Description
+
+| table:enity mapping
+| string
+| <table_name>:entity_path
+| empty
+| ex.customer:com.solace.connectors.database.sink.entity.Customer
+
+| topic name:table mapping
+| string
+| topic_name:<table_name>
+| empty
+| set topic name to table name mapping, the event of contain this topic name will be insert into the table. wildcard >,* can be used for filter the topic.
+
+| DB_CONNECTOR_TIMESTAMP_FORMAT
+| string
+| timestamp format
+| yyyy/dd/MM.HH:mm:ss
+| Set the DB Connector timestamp format.
+
+| DB_MSG_HEADER_TIMESTAMP_FORMAT
+| string
+| timestamp format
+| yyyy/dd/MM.HH:mm:ss
+| Set the message header timestamp format.
+
+| MESSAGE_HEADER_<header property>=<table name>.column property
+| string
+| <table_name>.column property name
+| empty
+| For example: MESSAGE_HEADER_TRACK_ID=passenger.day, if message header has a property "TRACK_ID", its value will inserted to table "passenger", column "day"
+
+| jpaBatchMode
+| boolean
+| true or false
+| false
+| true to enable batch insert to the DB table
+
+| jpaBatchSize
+| int
+| 2,3,4...
+| 1
+| Set the batch size to DB when jpaBatchMode is true
+
+| jpaMaxRetry
+| boolean
+| true or false
+| false
+| Retry times to insert to DB table times.
+
+|===
