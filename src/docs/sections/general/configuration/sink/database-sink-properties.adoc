@@ -60,4 +60,28 @@ These configuration options are all prefixed by `file.assembler.`:
 | false
 | Retry times to insert to DB table times.
 
+| jpaRetryWaitMilliseconds
+| Milliseconds
+| 3000
+| empty
+| Interval between retry
+
+| redirectOnFailEnable
+| boolean
+| true or false
+| false
+| when true, if the topic name in the queue is not mapped to any table, it will redirect this message to another new topic with a redirectPrefix prepend to the original topic name
+
+| redirectPrefix
+| string
+| string+/
+| prefix/, could be any string + /
+| prepand to the original topic name
+
+| payloadFormat
+| string
+| xml or json
+| xml
+| payload format sent to Solace queue
+
 |===
