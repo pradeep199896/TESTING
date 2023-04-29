@@ -81,3 +81,64 @@ include::../../../snippets/attributes/common.adoc
 | source table indicator column
 | 
 | source table read indicator column
+
+| table_name.DB_TRACKING_ID
+| string
+| tracking id value
+| 
+| specify the tracking ID column property
+
+| table_name.DB_READ_TIME
+| string
+| connector will update this column when reading this record
+| 
+| specify the read time column property, update this column with the reading record time by connector
+
+| table_name.DB_READ_INDICATOR_COLUMN_UPDATE_VALUE_INPROGRESS
+| string
+| indicator column will change to this value
+| 
+| after records read by connector and in the process
+
+| table_name.DB_READ_INDICATOR_COLUMN_UPDATE_VALUE_PROCESSED
+| string
+| indicator column will change to this value
+| 
+| after records read by connector, sent to solace as event and got the ack.
+
+| table_name.DB_READ_INDICATOR_COLUMN_DEFAULT_VALUE
+| string
+| default value
+| 
+| initial value and ready to read by connector.
+
+| table_name.DB_READ_INDICATOR_COLUMN_FAILED_VALUE
+| string
+| set to a failed value
+| 
+| error or failed during processing.
+
+| table_name.DB_READ_RECORD_SEQUENTIAL_INDICATOR
+| string
+| table column property
+| 
+| table records reading sequencial column property
+
+| table_name.DB_READ_RECORD_SEQUENTIAL_ORDER
+| string
+| asc or desc
+| asc
+| read table records 
+
+| table_name.DB_READ_INDICATOR_BRIDGE_FAILED_VALUE
+| boolean
+| true or false
+| false
+| if true, it will read the failed ones after starting the connector, if failed, it will ignore the failed one.
+
+| table_name.MESSAGE_HEADER_<custom_header>
+| string
+| header name
+|
+| it will have custom_header in the message property, its value is from the record of the column property specified
+
