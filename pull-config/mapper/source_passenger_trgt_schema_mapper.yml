@@ -1,5 +1,6 @@
 solace-connector-mapper:
   mapper-metadata:
+    escape-special-characters: true
     schema-type:
     encrypted:
   payload-mapper:
