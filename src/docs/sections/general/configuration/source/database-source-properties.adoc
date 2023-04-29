@@ -28,14 +28,56 @@ include::../../../snippets/attributes/common.adoc
 |
 | Fill in table name mapped to a entity
 
-| table name.BINDING
+| table_name.BINDING
 | string
 | output-0
 | output-0
 | use this default value
 
-| source_passenger.TOPIC
+| table_name.TOPIC
 | string
 | topic name with multiple levels, using /
 | 
 | data topic name, send the event of record to this topic
+
+| table_name.LVQ_TOPIC
+| string
+| topic name with multiple levels, using /
+| 
+| lvq topic name, send checkpoint data to this topic
+
+| table_name.DB_TABLE
+| string
+| parent table
+| 
+| parent table name
+
+| table_name.DB_PARENT_KEY
+| string
+| parent table key
+| 
+| key column property in the parent table, has relationship with child table key.
+
+| table_name.DB_PARENT_COLLECTION
+| string
+| map object
+| 
+| map object in the parent entity
+
+| table_name.DB_CHILD_TABLE
+| string
+| child table name
+| 
+| child table name
+
+| table_name.DB_CHILD_KEY
+| string
+| child table key
+| 
+| key column property in the child table, has relationship with parent table key
+
+| table_name.DB_READ_INDICATOR_COLUMN
+| string
+| source table indicator column
+| 
+| source table read indicator column
