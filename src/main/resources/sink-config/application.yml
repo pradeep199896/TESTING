@@ -208,3 +208,4 @@ solace-persistence:
     redirectOnFailEnable: false
     redirectPrefix: RD/
     payloadFormat: xml
+    dbUpdateFlag: true
