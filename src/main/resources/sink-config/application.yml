@@ -176,7 +176,7 @@ solace-persistence:
     #    url: jdbc:mysql://10.144.23.240:3306/dtstest
     #    password: rootroot
     driver-class-name: oracle.jdbc.OracleDriver
-    url: jdbc:oracle:thin:@//192.168.3.178:1524/ORCLCDB
+    url: jdbc:oracle:thin:@//114.241.106.216:1524/ORCLCDB
     # url: jdbc:oracle:thin:@//localhost:47161/xe
     username: c##test
     password: test

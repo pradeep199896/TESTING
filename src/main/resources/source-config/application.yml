@@ -157,8 +157,7 @@ solace-persistence:
     #    url: jdbc:mysql://localhost:3306/dtstest
     #    url: jdbc:mysql://10.144.23.240:3306/dtstest
     #    password: rootroot
-    url: jdbc:oracle:thin:@//192.168.3.178:1524/ORCLCDB
-    # url: jdbc:oracle:thin:@//localhost:47161/xe
+    url: jdbc:oracle:thin:@//114.241.106.216:1524/ORCLCDB
     username: c##test
     password: test
     hikari:
