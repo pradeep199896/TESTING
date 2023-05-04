@@ -208,4 +208,4 @@ solace-persistence:
     redirectOnFailEnable: false
     redirectPrefix: RD/
     payloadFormat: xml
-    dbUpdateFlag: true
+    dbUpdateFlag: true   #if true, it will update the record by primary key. if false, will not do update and the event consumed.
