@@ -22,7 +22,7 @@ spring:
     stream:
       bindings:  # Workflow bindings
         input-0:
-          destination: pubSubPullLVQ     #LVQ
+          destination: airline-passenger-lvq     #LVQ
           binder: solace-db
           group: no
           #        sendText-out-0:
@@ -57,7 +57,7 @@ solace:
           back-off-initial-interval: 1000  # The initial interval (milliseconds) to back-off when retrying a fail-over.
           back-off-max-interval: 10000  # The maximum interval (milliseconds) to back-off when retrying a fail-over.
           back-off-multiplier: 2.0  # The multiplier to apply to the back-off interval between each retry of a fail-over.
-      queue: pubSubPull-mgt-queue  # The management queue name.
+      queue: database-source-management-q  # The management queue name.
       session:  # The management session. This has the same interface as that used by `solace.java.*`. For more info: https://github.com/SolaceProducts/solace-spring-boot/tree/master/solace-spring-boot-starters/solace-java-spring-boot-starter#updating-your-application-properties
         host: tcp://192.144.217.87:55555
         msgVpn: default
@@ -158,8 +158,8 @@ solace-persistence:
     #    url: jdbc:mysql://10.144.23.240:3306/dtstest
     #    password: rootroot
     url: jdbc:oracle:thin:@//114.241.106.216:1524/ORCLCDB
-    username: c##test
-    password: test
+    username: c##demouser
+    password: demouser
     hikari:
       minimum-idle: 10
       maximum-pool-size: 20

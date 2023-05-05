@@ -22,7 +22,7 @@ spring:
     stream:
       bindings:  # Workflow bindings
         input-0:
-          destination: pubSubPushSource   # Queue name
+          destination: customer-q   # Queue name
           binder: solace
           consumer:
             #Concurrency can be used with a consumer group (non-exclusive queue) to process events in multiple threads
@@ -77,7 +77,7 @@ solace:
           back-off-initial-interval: 1000  # The initial interval (milliseconds) to back-off when retrying a fail-over.
           back-off-max-interval: 10000  # The maximum interval (milliseconds) to back-off when retrying a fail-over.
           back-off-multiplier: 2.0  # The multiplier to apply to the back-off interval between each retry of a fail-over.
-      queue: management-queue  # The management queue name.
+      queue: database-sink-management-q  # The management queue name.
       session:  # The management session. This has the same interface as that used by `solace.java.*`. For more info: https://github.com/SolaceProducts/solace-spring-boot/tree/master/solace-spring-boot-starters/solace-java-spring-boot-starter#updating-your-application-properties
         host: tcp://192.144.217.87:55555
         msgVpn: default
@@ -178,8 +178,8 @@ solace-persistence:
     driver-class-name: oracle.jdbc.OracleDriver
     url: jdbc:oracle:thin:@//114.241.106.216:1524/ORCLCDB
     # url: jdbc:oracle:thin:@//localhost:47161/xe
-    username: c##test
-    password: test
+    username: c##demouser
+    password: demouser
     hikari:
       minimum-idle: 10
       maximum-pool-size: 20

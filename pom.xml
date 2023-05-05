@@ -97,17 +97,7 @@
 			<dependency> <!-- [SPRING-BUGFIX] CVE-2022-25857 - Remove when fixed by Spring-Boot -->
 				<groupId>org.yaml</groupId>
 				<artifactId>snakeyaml</artifactId>
-				<version>2.0</version>
-			</dependency>
-			<dependency>
-				<groupId>com.google.protobuf</groupId>
-				<artifactId>protobuf-java</artifactId>
-				<version>3.21.7</version>
-			</dependency>
-			<dependency>
-				<groupId>cn.hutool</groupId>
-				<artifactId>hutool-core</artifactId>
-				<version>5.8.12</version>
+				<version>1.33</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -224,10 +214,10 @@
 				</executions>
 			</plugin>
 
-<!--			<plugin>-->
-<!--				<groupId>org.apache.maven.plugins</groupId>-->
-<!--				<artifactId>maven-enforcer-plugin</artifactId>-->
-<!--			</plugin>-->
+			<!--			<plugin>-->
+			<!--				<groupId>org.apache.maven.plugins</groupId>-->
+			<!--				<artifactId>maven-enforcer-plugin</artifactId>-->
+			<!--			</plugin>-->
 
 			<!-- Generate Build Artifacts -->
 			<plugin>
@@ -263,7 +253,109 @@
 				<groupId>com.github.spotbugs</groupId>
 				<artifactId>spotbugs-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-entity</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<encoding>UTF-8</encoding>
+							<outputDirectory>target/entity</outputDirectory>
+							<resources>
+								<resource>
+									<directory>entity</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>github</id>
+			<repositories>
+				<repository>
+					<id>github-solacetechcoe-spring-cloud-stream-binder-db</id>
+					<url>https://maven.pkg.github.com/SolaceTechCOE/spring-cloud-stream-binder-db</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>github-solacetechcoe-solace-transformation-engine</id>
+					<url>https://maven.pkg.github.com/SolacePrivateTechCOE/solace-transformation-engine</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>github-solacedev-pubsubplus-connector-framework</id>
+					<url>https://maven.pkg.github.com/solacedev/pubsubplus-connector-framework</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>github-solacedev-solace-spring-cloud</id>
+					<url>https://maven.pkg.github.com/SolaceDev/solace-spring-cloud</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>github-solacedev-pubsubplus-connector-framework</id>
+					<url>https://maven.pkg.github.com/solacedev/pubsubplus-connector-framework</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+				<pluginRepository>
+					<id>github-solacetechcoe-spring-cloud-stream-binder-db</id>
+					<url>https://maven.pkg.github.com/SolaceTechCOE/spring-cloud-stream-binder-db</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+				<pluginRepository>
+					<id>github-solacetechcoe-solace-transformation-engine</id>
+					<url>https://maven.pkg.github.com/SolacePrivateTechCOE/solace-transformation-engine</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+
+		</profile>
+	</profiles>
 </project>
