@@ -1,5 +1,3 @@
-package com.solace.connectors.database;
-
 /*
  * Licensed to Solace Corporation under one or more
  * contributor license agreements. See the NOTICE file distributed with
@@ -15,6 +13,9 @@ package com.solace.connectors.database;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.solace.connectors.database;
+
+
 import com.solace.connectors.database.mapper.SolaceToSolaceDBConnectorPayloadMapper;
 import com.solace.connectors.database.mapper.SolaceDBConnectorToSolacePayloadMapper;
 import com.solace.connector.core.function.MapPayloadsFunctions;
