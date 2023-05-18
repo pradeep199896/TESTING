@@ -95,9 +95,9 @@ mvn -DskipTests=true clean package
 solace-persistence:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
-    url: jdbc:oracle:thin:@//192.168.3.178:1524/ORCLCDB
-    username: c##test
-    password: test
+    url: jdbc:oracle:thin:@//IP:Port/Instance
+    username: username
+    password: password
     hikari:
       initializationFailTimeout: -1
       connection-timeout: 5000
@@ -193,15 +193,15 @@ solace:
           back-off-multiplier: 2.0  # The multiplier to apply to the back-off interval between each retry of a fail-over.
       queue: management-queue-push  # The management queue name.
       session: # The management session. This has the same interface as that used by `solace.java.*`. For more info: https://github.com/SolaceProducts/solace-spring-boot/tree/master/solace-spring-boot-starters/solace-java-spring-boot-starter#updating-your-application-properties
-        host: tcp://192.144.217.87:55555
+        host: tcp://ManagementSolaceIP:Port
         msgVpn: default
-        client-username: admin
-        client-password: admin
+        client-username: username
+        client-password: password
   java:
-    host: tcp://192.144.217.87:55555
+    host: tcp://DataSoalceIP:Port
     msgVpn: default
-    clientUsername: admin
-    clientPassword: admin
+    clientUsername: username
+    clientPassword: password
     connectRetries: -1
     reconnectRetries: -1
     apiProperties:
@@ -304,7 +304,7 @@ solace-connector-mapper:
         
 Logback has been used to enable the logging mechanism. 
 
-**Configuration File**: `resourceslogback.xml`
+**Configuration File**: `resources/logback.xml`
 
 You can change your log default folder in logback.xml:
 
@@ -400,14 +400,8 @@ The file `reveng.xml` location is configured in pom.xml file:
 
 <sql-type jdbc-type="DATE" hibernate-type="java.util.Date"/>
     <sql-type jdbc-type="TIMESTAMP" hibernate-type="java.util.Date"/>
-<!--    <sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Double"/>-->
     <sql-type jdbc-type="DECIMAL" hibernate-type="java.lang.Double" />
-    <sql-type jdbc-type="CHAR" hibernate-type="java.lang.String" />
-    <sql-type jdbc-type="NUMERIC" length="10" precision="3"  hibernate-type="java.math.BigDecimal" />
-    <sql-type jdbc-type="NUMERIC" length="20" precision="5"  hibernate-type="java.math.BigDecimal" />
-    <sql-type jdbc-type="NUMERIC" length="37" precision="4"  hibernate-type="java.math.BigDecimal" />
     <sql-type jdbc-type="FLOAT"   hibernate-type="java.math.BigDecimal" />
-    <sql-type jdbc-type="NUMERIC" length="38" precision="0"  hibernate-type="java.math.BigDecimal" />
     <sql-type jdbc-type="NUMERIC"  hibernate-type="java.math.BigDecimal" />
     <sql-type jdbc-type="BLOB"   hibernate-type="java.lang.Byte[]" />
     <sql-type jdbc-type="CLOB"   hibernate-type="java.lang.String" />
