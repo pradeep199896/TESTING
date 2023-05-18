@@ -105,8 +105,8 @@ solace-persistence:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
     url: jdbc:oracle:thin:@//IP:Port/Instance
-    username: c##test
-    password: test
+    username: username
+    password: password
     hikari:
       minimum-idle: 10
       maximum-pool-size: 20
@@ -210,13 +210,13 @@ solace:
       session: # The management session. This has the same interface as that used by `solace.java.*`. For more info: https://github.com/SolaceProducts/solace-spring-boot/tree/master/solace-spring-boot-starters/solace-java-spring-boot-starter#updating-your-application-properties
         host: tcp://MangemntSolaceIP:Port
         msgVpn: default
-        client-username: admin
-        client-password: admin
+        client-username: username
+        client-password: password
   java:
-    host: tcp://DataSolaceIP:55555
+    host: tcp://DataSolaceIP:Port
     msgVpn: default
-    clientUsername: admin
-    clientPassword: admin
+    clientUsername: username
+    clientPassword: password
     connectRetries: -1
     reconnectRetries: -1
     apiProperties:
@@ -259,10 +259,10 @@ spring:
     admin:
       client:
         enabled: true
-        url: http://localhost:8082       #configure your admin server url
+        url: http://AdminIP:8082       #configure your admin server url
         auto-registration: true
   application:
-    name: Instance006                    #configure your application name
+    name: Database(Sink)                    #configure your application name
 
 ```
 
@@ -323,8 +323,11 @@ The file `reveng.xml` location is configured in pom.xml file:
     <sql-type jdbc-type="DATE" hibernate-type="java.util.Date"/>
     <sql-type jdbc-type="TIMESTAMP" hibernate-type="java.util.Date"/>
     <sql-type jdbc-type="DECIMAL" hibernate-type="java.lang.Double" />
-    <sql-type jdbc-type="NUMERIC"  hibernate-type="java.lang.Integer" />
     <sql-type jdbc-type="CHAR" hibernate-type="java.lang.String" />
+    <sql-type jdbc-type="FLOAT"   hibernate-type="java.math.BigDecimal" />
+    <sql-type jdbc-type="NUMERIC"  hibernate-type="java.math.BigDecimal" />
+    <sql-type jdbc-type="BLOB"   hibernate-type="java.lang.Byte[]" />
+    <sql-type jdbc-type="CLOB"   hibernate-type="java.lang.String" />
 
   </type-mapping>
   <table-filter
