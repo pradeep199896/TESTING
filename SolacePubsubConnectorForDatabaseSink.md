@@ -417,8 +417,8 @@ dxb/passenger/col:passenger
 test/topic/customer:customer
 
 dxb/passengers/col/contact_no/*/name=passenger
-#>=passenger
-entities_customer=customer
+>=passenger
+
 ```
 
 config the topic timestamp format for data:
