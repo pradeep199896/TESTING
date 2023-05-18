@@ -168,7 +168,7 @@ spring:
             retryable-exceptions:
               org.springframework.orm.jpa.JpaSystemException: true
         output-0:
-	       destination: jsonQ/lvq
+	       destination: jsonQ/lvq   #set lvq topic
 	       binder: solace-db        #solaceDB binder for Connector
 	  solace:
 	    bindings:
