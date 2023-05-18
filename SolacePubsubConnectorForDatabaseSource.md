@@ -32,7 +32,7 @@ Covering the step-by-step guide to setup the **Solace Pubsub Connector For DB So
 
 | S.No |	Feature |
 | :---: | ---- |
-|1	 |The source DB object from where Adapter polls remains as-is (as EMS).<br/>No change expected at application DB end (Includes Tables, Views & Child Table)|
+|1	 |The source DB object from where Connector polls remains as-is (as EMS).<br/>No change expected at application DB end (Includes Tables, Views & Child Table)|
 |2	|Adapter should pick records in sequence only (Based on Sequence Number and timestamp field)|
 |3 | The Adapter should be able to update each record with appropriate flag (in existing adb_l_delivery_status field) <br/> &emsp;&emsp;N - New : set by trigger <br/> &emsp;&emsp;P - Pending: under process (picked up by adapter, not yet published to messaging layer)  <br/> &emsp;&emsp;C - Completed: Processing completed (published successfully to messaging layer) <br/> &emsp;&emsp;F - Failed: Fail to publish record|
 |4|	The adapter should have the capability to read in batch and update flag in batch to avoid chattiness and ensure better performance |
