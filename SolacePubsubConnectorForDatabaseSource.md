@@ -708,11 +708,11 @@ Generating the connector binary is a three-step process
         <td>The size of jpa batch opration</td>
     </tr>
     <tr>
-        <td>spring:cloud:function:stream:poller:fixed-delay</td>
+        <td>spring: cloud:function:stream:poller:fixed-delay</td>
         <td>Defines the interval frequency of the data polling from Database</td>
     </tr>
 	<tr>
-        <td>spring:cloud:function:stream:bindings:dataCollectting-out-0:destination</td>
+        <td>spring: cloud:function:stream:bindings:dataCollectting-out-0:destination</td>
         <td>Allowed to configure both static and dynamic topics <br/>Some of the parameterized notations will add data to topic during the runtime.<br/>
         {COL:column name}: adds the value for defined column name into the to the topic<br/>
 {DB_TABLE}: adds a table name to the topics based on connector_config.properties file<br/>
