@@ -545,7 +545,7 @@ Connector monitoring is a Spring Boot Admin server which helps to visualize the 
         <td>solace-persistence:jpa:properties:jdbc:batch_size</td>
         <td>The size of jpa batch opration</td>
     </tr>
-    <tr><td>spring:cloud:function:stream:bindings:dataCollectting-out-0:destination</td>
+    <tr><td>spring: cloud:function:stream:bindings:dataCollectting-out-0:destination</td>
         <td>Allowed to configure both static and dynamic topics <br/>Some of the parameterized notations will add data to topic during the runtime.<br/>
         {COL:column name}: adds the value for defined column name into the to the topic<br/>
 {DB_TABLE}: adds a table name to the topics based on connector_config.properties file<br/>
