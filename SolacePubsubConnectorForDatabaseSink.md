@@ -104,7 +104,7 @@ mvn -DskipTests=true clean package
 solace-persistence:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
-    url: jdbc:oracle:thin:@//192.168.3.178:1524/ORCLCDB
+    url: jdbc:oracle:thin:@//IP:Port/Instance
     username: c##test
     password: test
     hikari:
@@ -208,12 +208,12 @@ solace:
           back-off-multiplier: 2.0  # The multiplier to apply to the back-off interval between each retry of a fail-over.
       queue: management-queue-sink  # The management queue name.
       session: # The management session. This has the same interface as that used by `solace.java.*`. For more info: https://github.com/SolaceProducts/solace-spring-boot/tree/master/solace-spring-boot-starters/solace-java-spring-boot-starter#updating-your-application-properties
-        host: tcp://192.144.217.87:55555
+        host: tcp://MangemntSolaceIP:Port
         msgVpn: default
         client-username: admin
         client-password: admin
   java:
-    host: tcp://192.144.217.87:55555
+    host: tcp://DataSolaceIP:55555
     msgVpn: default
     clientUsername: admin
     clientPassword: admin
