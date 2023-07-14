@@ -179,6 +179,11 @@
 			<artifactId>spring-cloud-stream-binder-db</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.sap.cloud.db.jdbc</groupId>
+			<artifactId>ngdbc</artifactId>
+			<version>2.17.7</version>
+		</dependency>
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -192,12 +197,36 @@
 			<version>19.3.0.0</version>
 		</dependency>
 		<dependency>
+			<groupId>com.vertica.jdbc</groupId>
+			<artifactId>vertica-jdbc</artifactId>
+			<version>12.0.4-0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vertica</groupId>
+			<artifactId>vertica-dialect</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>/Users/faddywang/Documents/sourcecode/spring-cloud-stream-binder-master/pubsubplus-connector-database/entity/VerticaDialect.jar</systemPath>
+		</dependency>
+		<dependency>
 			<groupId>com.github.ulisesbocchio</groupId>
 			<artifactId>jasypt-spring-boot-starter</artifactId>
 			<version>3.0.3</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.splunk.logging</groupId>
+			<artifactId>splunk-library-javalogging</artifactId>
+			<version>1.11.7</version>
+		</dependency>
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>splunk-artifactory</id>
+			<name>Splunk Releases</name>
+			<url>https://splunk.jfrog.io/splunk/ext-releases-local</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
@@ -214,10 +243,10 @@
 				</executions>
 			</plugin>
 
-			<!--			<plugin>-->
-			<!--				<groupId>org.apache.maven.plugins</groupId>-->
-			<!--				<artifactId>maven-enforcer-plugin</artifactId>-->
-			<!--			</plugin>-->
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-enforcer-plugin</artifactId>-->
+<!--			</plugin>-->
 
 			<!-- Generate Build Artifacts -->
 			<plugin>

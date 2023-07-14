@@ -51,7 +51,7 @@ solace:
 
     management:
       leader-election:
-        mode: active_standby  # The connector’s leader election mode. (values: standalone, active_active, active_standby)
+        mode: standalone  # The connector’s leader election mode. (values: standalone, active_active, active_standby)
         fail-over:
           max-attempts: 3  # The maximum number of attempts to perform a fail-over.
           back-off-initial-interval: 1000  # The initial interval (milliseconds) to back-off when retrying a fail-over.
@@ -152,14 +152,14 @@ jasypt:
 
 solace-persistence:
   datasource:
-    #    driver-class-name: com.mysql.cj.jdbc.Driver
-    #    username: root
-    #    url: jdbc:mysql://localhost:3306/dtstest
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://114.241.108.124:33060/testdb
     #    url: jdbc:mysql://10.144.23.240:3306/dtstest
-    #    password: rootroot
-    url: jdbc:oracle:thin:@//114.241.106.216:1524/ORCLCDB
-    username: c##demouser
-    password: demouser
+    password: qwerasdf
+#    url: jdbc:oracle:thin:@//192.168.3.178:1524/ORCLCDB
+#    username: c##demouser
+#    password: demouser
     hikari:
       minimum-idle: 10
       maximum-pool-size: 20
@@ -169,7 +169,7 @@ solace-persistence:
   jpa:
     hibernate:
       ddl-auto: none
-    show-sql: false
+    show-sql: true
     properties:
       hibernate:
         jdbc:
@@ -177,9 +177,9 @@ solace-persistence:
         order_updates: true
         order_inserts: true
         generate_statistics: false
-        dialect: org.hibernate.dialect.Oracle10gDialect
-    #    database: mysql
-    database: oracle
+        #dialect: org.hibernate.dialect.Oracle10gDialect
+    database: mysql
+    #database: oracle
   source:
     sendBatchSize: 1      #currently only support 1
     queryMax: 100

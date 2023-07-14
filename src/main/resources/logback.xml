@@ -29,6 +29,39 @@
         <suffixPattern>%thread: %-5level %logger{50}:%line - %msg%n</suffixPattern>
     </appender>
 
+<!--    <appender name="socket" class="com.splunk.logging.TcpAppender">-->
+<!--        <RemoteHost>127.0.0.1</RemoteHost>-->
+<!--        <Port>15000</Port>-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <pattern>%thread %level: %msg%n</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+<!--    <logger name="splunk.logger" additivity="false" level="INFO">-->
+<!--        <appender-ref ref="socket"/>-->
+<!--    </logger>-->
+
+    <appender name="http" class="com.splunk.logging.HttpEventCollectorLogbackAppender">
+        <url>http://127.0.0.1:15555</url>
+        <token>73f9e231-401c-471b-b6d7-774334d94fbb</token>
+<!--        <index>history</index>-->
+        <source>db-connector</source>
+        <sourcetype>logback</sourcetype>
+        <messageFormat>text</messageFormat>
+<!--        <disableCertificateValidation>true</disableCertificateValidation>-->
+        <middleware>HttpEventCollectorUnitTestMiddleware</middleware>
+        <connectTimeout>5000</connectTimeout>
+        <terminationTimeout>2000</terminationTimeout>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%thread: %-5level %logger{50}:%line - %msg%n</pattern>
+        </layout>
+    </appender>
+
+<!--    <logger name="splunk.logger" additivity="false" level="TRACE">-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--        <appender-ref ref="http"/>-->
+<!--    </logger>-->
+
     <logger name="org.hibernate.SQL" additivity="false" >
         <level value="DEBUG" />
         <appender-ref ref="STDOUT"/>
@@ -58,6 +91,8 @@
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
         <appender-ref ref="RSYSLOG" />
+        <appender-ref ref="http" />
+<!--        <appender-ref ref="socket" />-->
     </root>
 
 </configuration>

@@ -108,9 +108,6 @@ include::{connector-framework-docs-dir}/sections/general/configuration/how-to.ad
 include::{connector-framework-docs-dir}/sections/general/configuration/options/external.adoc[leveloffset=+2]
 include::{connector-framework-docs-dir}/sections/general/configuration/options/connector.adoc[leveloffset=+2]
 include::{connector-framework-docs-dir}/sections/general/configuration/options/workflow.adoc[leveloffset=+2]
-include::{docdir}/../sections/general/configuration/sink/database-sink-properties.adoc[leveloffset=+2]
-include::{docdir}/../sections/general/configuration/source/database-source-properties.adoc[leveloffset=+2]
-
 
 == License
 

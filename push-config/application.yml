@@ -22,7 +22,7 @@ spring:
     stream:
       bindings:  # Workflow bindings
         input-0:
-          destination: customer-q   # Queue name
+          destination: passerger-q   # Queue name
           binder: solace
           consumer:
             #Concurrency can be used with a consumer group (non-exclusive queue) to process events in multiple threads
@@ -35,14 +35,13 @@ spring:
             retryable-exceptions:
               org.springframework.orm.jpa.JpaSystemException: true
         output-0:
-          destination: pubsub/push/lvq  # Database producer destination
+          destination: lvq/pass  # Database producer destination
           binder: solace-db
-
       solace:
         bindings:
           input-0:
             consumer:
-              batchMaxSize: 1
+              batchMaxSize: 5
               batchTimeout: 5000
               provisionSubscriptionsToDurableQueue: false
               provisionDurableQueue: false
@@ -77,7 +76,7 @@ solace:
           back-off-initial-interval: 1000  # The initial interval (milliseconds) to back-off when retrying a fail-over.
           back-off-max-interval: 10000  # The maximum interval (milliseconds) to back-off when retrying a fail-over.
           back-off-multiplier: 2.0  # The multiplier to apply to the back-off interval between each retry of a fail-over.
-      queue: database-sink-management-q  # The management queue name.
+      queue: management-queue-push-pass  # The management queue name.
       session:  # The management session. This has the same interface as that used by `solace.java.*`. For more info: https://github.com/SolaceProducts/solace-spring-boot/tree/master/solace-spring-boot-starters/solace-java-spring-boot-starter#updating-your-application-properties
         host: tcp://192.144.217.87:55555
         msgVpn: default
@@ -175,26 +174,25 @@ solace-persistence:
     #    url: jdbc:mysql://localhost:3306/dtstest
     #    url: jdbc:mysql://10.144.23.240:3306/dtstest
     #    password: rootroot
-#    driver-class-name: oracle.jdbc.OracleDriver
-#    url: jdbc:oracle:thin:@//114.241.108.124:1524/ORCLCDB
-#    # url: jdbc:oracle:thin:@//localhost:47161/xe
-#    username: c##test
-#    password: test
-    driver-class-name: com.sap.db.jdbc.Driver
-    url: jdbc:sap://sapbest:30015/?encrypt=true&validateCertificate=false
-    username: best
-    password: Welcome123
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@//127.0.0.1:47161/xe
+    username: test
+    password: TEST
+#    driver-class-name: com.vertica.jdbc.Driver
+#    url: jdbc:vertica://ec2-3-91-97-41.compute-1.amazonaws.com:5433/VMart
+#    username: dbadmin
+#    password:
+
     hikari:
-      auto-commit: false        #disable while SQL
-      minimum-idle: 10
-      maximum-pool-size: 20
+      minimum-idle: 1
+      maximum-pool-size: 5
       idle-timeout: 500000
       max-lifetime: 540000
       connection-timeout: 5000
   jpa:
     hibernate:
-      ddl-auto: none
-    show-sql: false
+      ddl-auto: update
+    show-sql: true
     properties:
       hibernate:
         jdbc:
@@ -202,16 +200,15 @@ solace-persistence:
         order_updates: true
         order_inserts: true
         generate_statistics: false
-        dialect: org.hibernate.dialect.Oracle10gDialect
+#        dialect: org.hibernate.dialect.VerticaDialect
     #    database: mysql
-    database: oracle
+    database: mysql
   sink:
-    db-crud-mode: SQL  #SQL or JPA,  set auto-commit: false when SQL
+    db-crud-mode: SQL
     jpaBatchMode: true
     jpaBatchSize: 60
     jpaMaxRetry: 2
     jpaRetryWaitMilliseconds:  3000
     redirectOnFailEnable: false
     redirectPrefix: RD/
-    payloadFormat: json  #json or xml
-    dbUpdateFlag: true   #if true, it will update the record by primary key. if false, will not do update and the event consumed.
+    payloadFormat: json
