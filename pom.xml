@@ -205,8 +205,8 @@
 			<groupId>com.vertica</groupId>
 			<artifactId>vertica-dialect</artifactId>
 			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>/Users/faddywang/Documents/sourcecode/spring-cloud-stream-binder-master/pubsubplus-connector-database/entity/VerticaDialect.jar</systemPath>
+<!--			<scope>system</scope>-->
+<!--			<systemPath>/Users/faddywang/Documents/sourcecode/spring-cloud-stream-binder-master/pubsubplus-connector-database/entity/VerticaDialect.jar</systemPath>-->
 		</dependency>
 		<dependency>
 			<groupId>com.github.ulisesbocchio</groupId>
